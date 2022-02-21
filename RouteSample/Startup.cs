@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RouteSample.Constraints;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +24,7 @@ namespace RouteSample
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<RouteOptions>(opt => opt.ConstraintMap.Add("custom", typeof(CustomConstraint)));
             services.AddControllersWithViews();
         }
 
@@ -59,6 +62,7 @@ namespace RouteSample
                 endpoints.MapControllerRoute("range", "{controller=Personel}/{action=Index}/{id:range(5,10)}");
                 endpoints.MapControllerRoute("min", "{controller=Personel}/{action=Index}/{id:min(5)}");
                 endpoints.MapControllerRoute("max", "{controller=Personel}/{action=Index}/{id:max(10)}");
+                endpoints.MapControllerRoute("Default4", "{controller=Personel}/{action=Index}/{id:alpha:maxlength(10)}");
 
                 //Route Özelden genele göre sýralanmalýdýr. 
             });

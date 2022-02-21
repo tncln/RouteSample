@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace RouteSample.Controllers
 {
+   // [Route("[controller]/[action]")]
+   [Route("ana")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -17,7 +19,7 @@ namespace RouteSample.Controllers
         {
             _logger = logger;
         }
-
+        [Route("isim")]
         public IActionResult Index()
         {
             return View();

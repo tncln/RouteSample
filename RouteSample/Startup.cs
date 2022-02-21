@@ -45,12 +45,20 @@ namespace RouteSample
             app.UseEndpoints(endpoints =>
             {
                 //Default deðerleri barýndýrýr. 
-                //endpoints.MapDefaultControllerRoute(); 
+                endpoints.MapDefaultControllerRoute(); 
 
                 //Custom Route
                 endpoints.MapControllerRoute("Default2", "anasayfa", new { controller = "Home", action = "Index" });
-                endpoints.MapControllerRoute("Default", "{controller=Personel}{action=Index}");
-                
+                endpoints.MapControllerRoute("Default", "{controller=Personel}/{action=Index}");
+
+
+                //route constraints 
+                endpoints.MapControllerRoute("length", "{controller=home}/{action=Index}/{id:int?}/{x:length(12)?}");
+                endpoints.MapControllerRoute("maxlength", "{controller=Personel}/{action=Index}/{id:maxlength(10)}");
+                endpoints.MapControllerRoute("minlength", "{controller=Personel}/{action=Index}/{id:minlength(10)}");
+                endpoints.MapControllerRoute("range", "{controller=Personel}/{action=Index}/{id:range(5,10)}");
+                endpoints.MapControllerRoute("min", "{controller=Personel}/{action=Index}/{id:min(5)}");
+                endpoints.MapControllerRoute("max", "{controller=Personel}/{action=Index}/{id:max(10)}");
 
                 //Route Özelden genele göre sýralanmalýdýr. 
             });

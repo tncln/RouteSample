@@ -44,9 +44,15 @@ namespace RouteSample
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                //Default deðerleri barýndýrýr. 
+                //endpoints.MapDefaultControllerRoute(); 
+
+                //Custom Route
+                endpoints.MapControllerRoute("Default2", "anasayfa", new { controller = "Home", action = "Index" });
+                endpoints.MapControllerRoute("Default", "{controller=Personel}{action=Index}");
+                
+
+                //Route Özelden genele göre sýralanmalýdýr. 
             });
         }
     }

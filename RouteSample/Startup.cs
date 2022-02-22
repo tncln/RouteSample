@@ -74,7 +74,10 @@ namespace RouteSample
 
                 });
 
-                endpoints.Map("Example-route",new ExampleHandler().Handler);
+                endpoints.Map("Example-route", new ExampleHandler().Handler());
+
+                //Custom Route ile resim boyutlandýrma
+                endpoints.Map("image/{imageName}", new ImageHandler().Handler(env.WebRootPath));
 
             });
         }

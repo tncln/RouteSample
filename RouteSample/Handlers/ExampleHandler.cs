@@ -12,7 +12,7 @@ namespace RouteSample.Handlers
         {
             return async c =>
             {
-                 
+                await c.Response.WriteAsync("adem");
             };
         }
     }

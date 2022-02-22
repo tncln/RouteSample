@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RouteSample.Constraints;
+using RouteSample.Handlers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,6 +66,16 @@ namespace RouteSample
                 endpoints.MapControllerRoute("Default4", "{controller=Personel}/{action=Index}/{id:alpha:maxlength(10)}");
 
                 //Route Özelden genele göre sýralanmalýdýr. 
+
+                //Custom Route Handle
+                //Endpoint e gelen herhangi bir istek controller dan ziyade direkt olarak buradaki fonksiyon tarafýndan karþýlanacaktýr
+                endpoints.Map("Example-route", async x =>
+                {
+
+                });
+
+                endpoints.Map("Example-route",new ExampleHandler().Handler);
+
             });
         }
     }

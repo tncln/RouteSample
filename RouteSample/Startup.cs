@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RouteSample.Constraints;
+using RouteSample.Extension;
 using RouteSample.Handlers;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,9 @@ namespace RouteSample
                 app.UseExceptionHandler("/Home/Error");
             }
             app.UseStaticFiles();
+
+            //Custom Middleware
+            app.UseHello();
 
             app.UseRouting();
 
